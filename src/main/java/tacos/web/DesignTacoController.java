@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import tacos.Ingredient;
 import tacos.Ingredient.Type;
@@ -45,5 +46,14 @@ public class DesignTacoController {
 
     private List<Ingredient> filterByType(List<Ingredient> ingredients, Type type) {
         return ingredients.stream().filter(x -> x.getType().equals(type)).collect(Collectors.toList());
+    }
+
+    @PostMapping
+    public String processDesign(Taco design) {
+        // 이 지점에서 타코 디자인(선택된 식자재 내역)을 저장한다.
+        // 이 작업은 3장에서 할 것이다.
+        log.info("Processing design: " + design);
+
+        return "redirect:/orders/current";
     }
 }
