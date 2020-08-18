@@ -34,7 +34,7 @@ public class DesignTacoController {
         );
 
         Type[] types = Type.values();
-        for (Type type :types) {
+        for (Type type : types) {
             model.addAttribute(type.toString().toLowerCase(), filterByType(ingredients, type));
         }
 
