@@ -28,6 +28,9 @@ public class Order implements Serializable {
 
     private Date placedAt;
 
+    @ManyToOne
+    private User user;
+
     @NotBlank(message = "name is required")
     private String deliveryName;
 
