@@ -33,10 +33,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
             .authorizeRequests() // return 'ExpressionInterceptUrlRegistry' Object to consist URL path, pattern and security requirement of path
                 .antMatchers("/design", "/orders").access("hasRole('ROLE_USER')")
-                .antMatchers("/", "/**").access("permitAll()").
-            and() // Represent that because it finish consist of auth, it ready to apply HTTP consist
+                .antMatchers("/", "/**").access("permitAll()")
+            .and() // Represent that because it finish consist of auth, it ready to apply HTTP consist
                 .formLogin()
-                    .loginPage("/login");
+                .loginPage("/login")
+            .and()
+                .logout()
+                .logoutSuccessUrl("/")
+            .and()
+                .csrf()
+            ;
     }
 
     @Override
