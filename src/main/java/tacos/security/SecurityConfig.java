@@ -27,10 +27,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
+    // HttpSecurity : To consist the method to handle security from web level
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-            .authorizeRequests()
+            .authorizeRequests() // return 'ExpressionInterceptUrlRegistry' Object to consist URL path, pattern and security requirement of path
                 .antMatchers("/design", "/orders").access("hasRole('ROLE_USER')")
                 .antMatchers("/", "/**").access("permitAll()").
             and()
